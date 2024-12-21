@@ -1,15 +1,55 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Time time1 = new Time(8, 9, 58);
+        System.out.println("EXPECTED RESULT: 08:09:58");
+        System.out.println("ACTUAL RESULT: " + time1);
+        System.out.println();
+
+
+        for (int i = 0; i < 3; i++) {
+            time1.tick();
+            System.out.println("EXPECTED RESULT: [time incremented by one second]");
+            System.out.println("ACTUAL RESULT: " + time1);
+            System.out.println();
+        }
+
+
+        time1 = new Time(8, 59, 59);
+        time1.tick();
+        System.out.println("EXPECTED RESULT: 09:00:00");
+        System.out.println("ACTUAL RESULT: " + time1);
+        System.out.println();
+
+
+        time1 = new Time(23, 59, 59);
+        time1.tick();
+        System.out.println("EXPECTED RESULT: 00:00:00");
+        System.out.println("ACTUAL RESULT: " + time1);
+        System.out.println();
+
+
+        Time time2 = new Time(1, 2, 3);
+        time1.addTime(time2);
+        System.out.println("EXPECTED RESULT: 01:02:03");
+        System.out.println("ACTUAL RESULT: " + time1);
+        System.out.println();
+
+
+        time1 = new Time(23, 59, 50);
+        time2 = new Time(0, 0, 15);
+        time1.addTime(time2);
+        System.out.println("EXPECTED RESULT: 00:00:05");
+        System.out.println("ACTUAL RESULT: " + time1);
+        System.out.println();
+
+        time1 = new Time(10, 10, 10);
+        for (int i = 0; i < 5; i++) {
+            time2 = new Time(0, 0, 59);
+            time1.addTime(time2);
+            System.out.println("EXPECTED RESULT: [time incremented by 59 seconds, rolling over when necessary]");
+            System.out.println("ACTUAL RESULT: " + time1);
+            System.out.println();
         }
     }
 }
